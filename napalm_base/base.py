@@ -63,9 +63,11 @@ class NetworkDriver(object):
         """
         This method is used to cleanup when the program is terminated suddenly.
         We need to make sure the connection is closed properly and the configuration DB
-        is released (unlocked).
+        is released (unlocked), but only if the session is still open.
         """
-        self.close()
+        session = self.is_alive()
+        if session['is_alive']:
+            self.close()
 
     @staticmethod
     def __raise_clean_exception(exc_type, exc_value, exc_traceback):
