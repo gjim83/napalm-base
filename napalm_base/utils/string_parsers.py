@@ -97,7 +97,7 @@ def convert_uptime_string_seconds(uptime):
         if match:
             uptime_dict = match.groupdict()
             break
-    print(uptime_dict)
+
     uptime_seconds = 0
     for unit, value in uptime_dict.items():
         if value is not None:
